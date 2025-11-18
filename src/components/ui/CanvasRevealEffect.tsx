@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 
 export const CanvasRevealEffect = ({
@@ -23,6 +23,40 @@ export const CanvasRevealEffect = ({
   dotSize?: number;
   showGradient?: boolean;
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // detect mobile on client
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768); // < md
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // MOBILEstatic but attractive gradient card, no canvas, no transitions
+  if (isMobile) {
+    return (
+      <div
+        className={cn(
+          "relative h-full w-full rounded-3xl p-[1px] shadow-[0_18px_45px_rgba(0,0,0,0.6)]",
+          // outer border + glow gradient
+          "bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.55),transparent_60%),radial-gradient(circle_at_bottom,_rgba(16,185,129,0.55),transparent_60%),linear-gradient(to_bottom,#020617,#020617)]",
+          "border border-white/10",
+          containerClassName
+        )}
+      >
+        <div
+          className={cn(
+            "h-full w-full rounded-[22px]",
+            "bg-gradient-to-br from-emerald-500/35 via-sky-500/25 to-slate-900/95",
+            "backdrop-blur-md"
+          )}
+        />
+      </div>
+    );
+  }
+
+  // DESKTOP / TABLET: original animated effect
   return (
     <div className={cn("h-full relative bg-white w-full", containerClassName)}>
       <div className="h-full w-full">
@@ -181,6 +215,7 @@ type Uniforms = {
     type: string;
   };
 };
+
 const ShaderMaterial = ({
   source,
   uniforms,
@@ -250,11 +285,10 @@ const ShaderMaterial = ({
     preparedUniforms["u_time"] = { value: 0, type: "1f" };
     preparedUniforms["u_resolution"] = {
       value: new THREE.Vector2(size.width * 2, size.height * 2),
-    }; // Initialize u_resolution
+    };
     return preparedUniforms;
   };
 
-  // Shader material
   const material = useMemo(() => {
     const materialObject = new THREE.ShaderMaterial({
       vertexShader: `
@@ -291,11 +325,12 @@ const ShaderMaterial = ({
 
 const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
   return (
-    <Canvas className="absolute inset-0  h-full w-full">
+    <Canvas className="absolute inset-0 h-full w-full">
       <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
     </Canvas>
   );
 };
+
 interface ShaderProps {
   source: string;
   uniforms: {

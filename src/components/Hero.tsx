@@ -36,7 +36,7 @@ function Hero() {
           </h2>
           <TextGenerateEffect
           className="text-center text-[40px] md:text-5xl lg:text-6xl text-white"
-          words="I am The Man."
+          words="I build with precision, passion, and purpose."
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
