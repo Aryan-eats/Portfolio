@@ -33,30 +33,21 @@ export const CanvasRevealEffect = ({
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // MOBILEstatic but attractive gradient card, no canvas, no transitions
+  // 📱 MOBILE: just a pretty background, behind content, no hover/animation, no blocking clicks
   if (isMobile) {
     return (
       <div
         className={cn(
-          "relative h-full w-full rounded-3xl p-[1px] shadow-[0_18px_45px_rgba(0,0,0,0.6)]",
-          // outer border + glow gradient
-          "bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.55),transparent_60%),radial-gradient(circle_at_bottom,_rgba(16,185,129,0.55),transparent_60%),linear-gradient(to_bottom,#020617,#020617)]",
-          "border border-white/10",
+          "absolute inset-0 -z-10 pointer-events-none rounded-3xl",
+          "bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.5),transparent_55%),radial-gradient(circle_at_bottom,_rgba(16,185,129,0.55),transparent_55%),linear-gradient(to_bottom,#022c22,#020617)]",
+          "border border-emerald-400/30 shadow-[0_18px_45px_rgba(0,0,0,0.7)]",
           containerClassName
         )}
-      >
-        <div
-          className={cn(
-            "h-full w-full rounded-[22px]",
-            "bg-gradient-to-br from-emerald-500/35 via-sky-500/25 to-slate-900/95",
-            "backdrop-blur-md"
-          )}
-        />
-      </div>
+      />
     );
   }
 
-  // DESKTOP / TABLET: original animated effect
+  // 💻 DESKTOP / TABLET: original animated effect
   return (
     <div className={cn("h-full relative bg-white w-full", containerClassName)}>
       <div className="h-full w-full">
