@@ -33,21 +33,30 @@ export const CanvasRevealEffect = ({
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // 📱 MOBILE: just a pretty background, behind content, no hover/animation, no blocking clicks
-  if (isMobile) {
-    return (
-      <div
-        className={cn(
-          "absolute inset-0 -z-10 pointer-events-none rounded-3xl",
-          "bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.5),transparent_55%),radial-gradient(circle_at_bottom,_rgba(16,185,129,0.55),transparent_55%),linear-gradient(to_bottom,#022c22,#020617)]",
-          "border border-emerald-400/30 shadow-[0_18px_45px_rgba(0,0,0,0.7)]",
-          containerClassName
-        )}
-      />
-    );
-  }
+  //  MOBILE: clean gradient background, no animation, text visible
+if (isMobile) {
+  return (
+    <div
+      className={cn(
+        "absolute inset-0 -z-10 pointer-events-none rounded-3xl",
 
-  // 💻 DESKTOP / TABLET: original animated effect
+       
+        "bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.35),transparent_60%),radial-gradient(circle_at_bottom,_rgba(16,185,129,0.35),transparent_60%),linear-gradient(to_bottom,#0c1b1a,#020617)]",
+
+     
+        "backdrop-blur-md",
+
+        
+        "shadow-none border-none",
+
+        containerClassName
+      )}
+    />
+  );
+}
+
+
+  // DESKTOP / TABLET: original animated effect
   return (
     <div className={cn("h-full relative bg-white w-full", containerClassName)}>
       <div className="h-full w-full">
