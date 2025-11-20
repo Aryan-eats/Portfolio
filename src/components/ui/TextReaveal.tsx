@@ -104,10 +104,10 @@ export const TextRevealCard = ({
           className="pointer-events-none absolute inset-3 z-20 flex items-center justify-center rounded-2xl bg-slate-950/70 shadow-[0_0_120px_rgba(56,189,248,0.55)]"
         >
           <p
-            style={{
-              textShadow:
-                "0 0 18px rgba(56,189,248,0.9), 0 0 32px rgba(37,99,235,0.95)",
-            }}
+            // style={{
+            //   textShadow:
+            //     "0 0 18px rgba(56,189,248,0.9), 0 0 32px rgba(37,99,235,0.95)",
+            // }}
             className="max-w-[90%] text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight 
                        bg-clip-text text-transparent 
                        bg-gradient-to-r from-sky-300 via-blue-400 to-indigo-400"
