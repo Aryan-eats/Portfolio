@@ -49,6 +49,7 @@ const badges = [
 
 export default function SkillsMarquee() {
   return (
+    <section id='skills'>
     <div className="w-full overflow-hidden py-8 select-none mb-12">
       <h1 className="heading mb-12">
         My <span className="text-purple">Skills</span>
@@ -71,5 +72,6 @@ export default function SkillsMarquee() {
         ))}
       </motion.div>
     </div>
+    </section>
   );
 }

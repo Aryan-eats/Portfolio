@@ -21,7 +21,7 @@ export default function Home() {
          <Grid /> 
          <RecentProject />
          <SkillsMarquee />
-        <Clients /> 
+         <Clients /> 
          <Approach />
          <Footer />
          <ScrollToTop />
