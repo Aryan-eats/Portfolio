@@ -57,6 +57,7 @@ export const TextRevealCard = ({
   }
 
   const rotateDeg = (widthPercentage - 50) * 0.1;
+
   return (
     <div
       onMouseEnter={mouseEnterHandler}
@@ -67,14 +68,16 @@ export const TextRevealCard = ({
       onTouchMove={touchMoveHandler}
       ref={cardRef}
       className={cn(
-        "bg-black-100 border border-white/8 w-full justify-center items-center rounded-lg p-8 relative overflow-hidden",
+        // dark navy card background
+        "bg-[#020617] border border-white/10 w-full justify-center items-center rounded-lg p-8 relative overflow-hidden",
         className
       )}
     >
       <MemoizedStars />
       {children}
 
-      <div className="h-40 relative flex items-center justify-center overflow-hidden">
+      <div className="h-40 relative  flex items-center justify-center overflow-hidden">
+        {/* REVEAL TEXT (BLUE GRADIENT) */}
         <motion.div
           style={{
             width: "100%",
@@ -90,17 +93,26 @@ export const TextRevealCard = ({
                 }
           }
           transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
-          className="absolute bg-purple z-20  will-change-transform"
+          className="absolute z-20 will-change-transform"
         >
-          <p
-            style={{
-              textShadow: "4px 4px 15px rgba(0,0,0,0.5)",
-            }}
-            className="text-xl sm:text-5xl md:text-6xl lg:text-7xl py-10 font-bold text-black-100 bg-clip-text bg-linear-to-b from-purple to-purple/50 text-center"
-          >
-            {revealText}
-          </p>
+       <div className="bg-black/90 rounded-xl p-6 flex items-center justify-center">
+  <p
+    style={{
+      textShadow: "4px 4px 15px rgba(15,23,42,0.9)", 
+    }}
+    className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold 
+               text-transparent bg-clip-text 
+               bg-gradient-to-r from-[#93c5fd] via-[#60a5fa] to-[#1d4ed8]
+               text-center tracking-tight"
+  >
+    {revealText}
+  </p>
+</div>
+
+
         </motion.div>
+
+        {/* SCAN LINE IN BLUE */}
         <motion.div
           animate={{
             left: `${widthPercentage}%`,
@@ -108,11 +120,17 @@ export const TextRevealCard = ({
             opacity: widthPercentage > 0 ? 1 : 0,
           }}
           transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
-          className="h-40 w-2 bg-linear-to-b from-transparent via-purple to-transparent absolute z-50 will-change-transform"
-        ></motion.div>
+          className="h-40 w-2 bg-linear-to-b from-transparent via-[#2563eb] to-transparent absolute z-50 will-change-transform"
+        />
 
-        <div className=" overflow-hidden mask-[linear-gradient(to_bottom,transparent,white,transparent)]">
-          <p className="text-xl sm:text-5xl md:text-6xl lg:text-7xl py-10 font-bold bg-clip-text text-transparent bg-linear-to-b from-purple to-purple/50 text-center">
+        {/* BASE TEXT (SUBTLE BLUE GRADIENT) */}
+        <div className="overflow-hidden mask-[linear-gradient(to_bottom,transparent,white,transparent)]">
+          <p
+            className="text-xl sm:text-5xl md:text-6xl lg:text-7xl py-10 font-bold 
+                       bg-clip-text text-transparent 
+                       bg-linear-to-b from-[#1e293b] to-[#0f172a] 
+                       text-center"
+          >
             {text}
           </p>
         </div>
@@ -129,9 +147,7 @@ export const TextRevealCardTitle = ({
   className?: string;
 }) => {
   return (
-    <h2 className={twMerge("text-white text-lg mb-2", className)}>
-      {children}
-    </h2>
+    <h2 className={twMerge("text-white text-lg mb-2", className)}>{children}</h2>
   );
 };
 
@@ -143,7 +159,7 @@ export const TextRevealCardDescription = ({
   className?: string;
 }) => {
   return (
-    <p className={twMerge("text-[#a9a9a9] text-sm", className)}>{children}</p>
+    <p className={twMerge("text-[#9ca3af] text-sm", className)}>{children}</p>
   );
 };
 
@@ -178,7 +194,7 @@ const Stars = () => {
             zIndex: 1,
           }}
           className="inline-block"
-        ></motion.span>
+        />
       ))}
     </div>
   );

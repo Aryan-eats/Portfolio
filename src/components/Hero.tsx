@@ -15,7 +15,7 @@ function Hero() {
         />
         <Spotlight
           className="top-10 left-full h-[80vh] w-[50vw]"
-          fill="purple"
+          fill="pruple"
         />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>

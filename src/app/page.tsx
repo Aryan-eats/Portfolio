@@ -10,6 +10,7 @@ import { FaH } from "react-icons/fa6";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import SkillsMarquee from "@/components/Skills";
 
 export default function Home() {
   return (
@@ -19,7 +20,8 @@ export default function Home() {
          <Hero />
          <Grid /> 
          <RecentProject />
-          <Clients /> 
+         <SkillsMarquee />
+        <Clients /> 
          <Approach />
          <Footer />
          <ScrollToTop />

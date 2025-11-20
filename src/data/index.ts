@@ -1,7 +1,7 @@
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
-  { name: "Testimony", link: "#clients" },
+  { name: "Skills", link: "#skills" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -103,6 +103,8 @@ export const projects = [
     link: "https://github.com/Aryan-eats/AdminDash",
   },
 ];
+
+
 
 export const testimonials = [
   {
