@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aryan.7cloud",
+  title: "aryankumar.org",
   description: "My Portfolio",
  
 };
